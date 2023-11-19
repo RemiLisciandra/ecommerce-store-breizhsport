@@ -4,7 +4,7 @@ interface BillboardProps {
   data: Billboard;
 }
 
-const BillboardComponent: React.FC<BillboardProps> = ({
+const Billboard: React.FC<BillboardProps> = ({
   data
 }) => {
   if (!data) {
@@ -24,4 +24,4 @@ const BillboardComponent: React.FC<BillboardProps> = ({
   );
 };
 
-export default BillboardComponent;
+export default Billboard;
