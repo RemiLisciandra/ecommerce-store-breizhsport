@@ -1,0 +1,26 @@
+name: CI Pipeline with SonarCloud
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sonarcloud_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "19"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          npm run build
+          sonar-scanner -Dsonar.projectKey=YourActualProjectKey -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
