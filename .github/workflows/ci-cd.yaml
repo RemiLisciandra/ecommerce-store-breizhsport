@@ -22,5 +22,5 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          npm run build
+          npm run dev
           sonar-scanner -Dsonar.projectKey=YourActualProjectKey -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
