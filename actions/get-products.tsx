@@ -21,9 +21,17 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     },
   });
 
-  const res = await fetch(url);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`API responded with status code: ${res.status}`);
+    }
 
-  return res.json();
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
 };
 
 export default getProducts;

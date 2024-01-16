@@ -30,14 +30,21 @@ const Summary = () => {
   }, 0);
 
   const onCheckout = async () => {
-    const response = await axios.post(
-      `http://localhost:3000/api/f3722163-6863-4915-befc-8ca57ffb61bb/checkout`,
-      {
+    try {
+      const API_URL = `http://localhost:3000/api/f3722163-6863-4915-befc-8ca57ffb61bb`;
+      const response = await axios.post(`${API_URL}/checkout`, {
         productIds: items.map((item) => item.id),
-      }
-    );
+      });
 
-    window.location = response.data.url;
+      if (response.data.url) {
+        window.location = response.data.url;
+      } else {
+        throw new Error("No redirect URL received");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error("Checkout failed. Please try again.");
+    }
   };
 
   return (
@@ -49,6 +56,7 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
+      php Copy code
       <Button
         onClick={onCheckout}
         disabled={items.length === 0}
