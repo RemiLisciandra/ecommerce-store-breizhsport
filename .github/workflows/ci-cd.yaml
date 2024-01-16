@@ -20,7 +20,7 @@ jobs:
 
       - name: Run SonarCloud Scan
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          STORE_SONAR_TOKEN: ${{ secrets.STORE_SONAR_TOKEN }}
         run: |
-          npm run dev
-          sonar-scanner -Dsonar.projectKey=YourActualProjectKey -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+          npm run build
+          sonar-scanner -Dsonar.projectKey=RemiLisciandra_ecommerce-store-breizhsport -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$STORE_SONAR_TOKEN
