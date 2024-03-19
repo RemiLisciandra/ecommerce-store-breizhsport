@@ -56,7 +56,6 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
-      php Copy code
       <Button
         onClick={onCheckout}
         disabled={items.length === 0}
